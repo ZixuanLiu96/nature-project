@@ -1,4 +1,9 @@
 import { Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage"; 
+import SignUpPage from "./pages/SignUpPage"; 
+import DashboardPage from "./pages/DashboardPage"; 
+import ErrorPage from "./pages/ErrorPage"; 
 
 
 function App() {
@@ -13,7 +18,7 @@ function App() {
         <Route path="*" element={<ErrorPage />}></Route>
         
       </Routes>
-    </>
+    </> 
   );
 }
 
