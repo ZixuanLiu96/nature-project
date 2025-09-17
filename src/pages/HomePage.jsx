@@ -5,6 +5,7 @@ function HomePage() {
     <div>
     <button>Log in</button>
     <button>Sign up</button>
+    
     </div>
   )
 }
