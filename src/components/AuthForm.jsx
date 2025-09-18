@@ -28,13 +28,13 @@ function AuthForm({ mode }) {
 
         if (mode === "login") {
             console.log("Login")
-            setMessage("Welcome back!")
+            //setMessage("Welcome back!") disappears beacuse of navigation to dashboard
             //navigate to userdashboard
             navigate("/dashboard")
         } else {
             console.log("Signup")
             setMessage("Welcome! You successfully created an account!")
-            //navigate to newdashboard
+            //navigate to login?
         }
     }
 
