@@ -11,6 +11,8 @@ function AuthForm({ mode }) {
     const [password, setPassword] = useState("")
     const [error, setError] = useState(null)
     const [message, setMessage] = useState(null)
+    const [loggedIn, setLoggedIn] = useState(false)
+    //const [userData, setUserData] = useState([])
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -30,12 +32,33 @@ function AuthForm({ mode }) {
             console.log("Login")
             //setMessage("Welcome back!") disappears beacuse of navigation to dashboard
             //navigate to userdashboard
-            navigate("/dashboard")
+            
         } else {
             console.log("Signup")
             setMessage("Welcome! You successfully created an account!")
             //navigate to login?
         }
+        return handleLogin(userName, password)
+    }
+
+    const handleLogin = () => {
+    
+        axios.get("http://localhost:5005/user")
+       .then((response) => setUserData(response.data))
+       //search in data for matching userName & password find()?
+       //store Id in context?
+       .then((response) => {})
+       .catch((error) => console.log(error))
+
+       if ( user.userName === userName && user.password === password ) {
+        setLoggedIn(true)
+        setError(null)
+        navigate("/dashboard")
+       } else {
+        setError("Invalid username or password")
+       }
+       
+
     }
 
     return (
@@ -48,8 +71,8 @@ function AuthForm({ mode }) {
 
             {message && (
                 <div role="alert" className="alert alert-success m-4">
-          <span>{message}</span>
-        </div>
+                    <span>{message}</span>
+                </div>
             )
             }
             <form onSubmit={handleSubmit} className="flex flex-col gap-4" >
