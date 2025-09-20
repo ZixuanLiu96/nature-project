@@ -1,6 +1,9 @@
 import { NavLink } from "react-router-dom"
+import { useUser } from "../context/user.context"
 
 function NavBarUser() {
+    const { user, logout } = useUser(); 
+
     return (
         <>
             <div className="navbar bg-base-100 shadow-sm">
@@ -41,8 +44,8 @@ function NavBarUser() {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <span>Hello, user!</span>
-                    <a className="btn">Log out</a>
+                    <span>Hello, {user.userName}!</span>
+                    <button onClick={logout} className="btn">Log out</button>
                 </div>
             </div>
         </>

@@ -1,8 +1,8 @@
-import { createContext, useState } from "react"
+import { createContext, useContext, useState } from "react"
 
 const UserContext = createContext()
 
-function UserProviderWrapper({children}) {
+export function UserProviderWrapper({children}) {
 
 const [user, setUser] = useState(null); 
 
@@ -19,4 +19,5 @@ const logout = () => {
     </UserContext.Provider>
 }
 
-export { UserContext , UserProviderWrapper }
+export function useUser()
+{ return useContext(UserContext) }; 

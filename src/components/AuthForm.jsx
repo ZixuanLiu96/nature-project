@@ -1,17 +1,18 @@
-import React from 'react'
 import { useState } from "react";
+import { useUser } from "../context/user.context"
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom"
 
 function AuthForm({ mode }) {
 
     const navigate = useNavigate();
+    const { login } = useUser()
 
     const [userName, setUserName] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState(null)
     const [message, setMessage] = useState(null)
-    const [loggedIn, setLoggedIn] = useState(false)
+    //const [loggedIn, setLoggedIn] = useState(false)
     const [userData, setUserData] = useState({})
 
     function handleSubmit(e) {
@@ -50,12 +51,13 @@ function AuthForm({ mode }) {
 
                 if (foundUser) {
                     setUserData(foundUser)//store Id for use in context
-                    setLoggedIn(true)
+                    //setLoggedIn(true)
+                    login(foundUser)
                     setError(null)
                     navigate(`/users/${foundUser.userId}`)
                 } else {
                     setError("Invalid username or password!")
-                    setLoggedIn(false)
+                    //setLoggedIn(false)
                 }
             })
             .catch((error) => {
@@ -88,10 +90,11 @@ function AuthForm({ mode }) {
             .then((response) => {
                 if (response) {
                     console.log("New user created:", response.data);
+                    login(response.data)
                     setUserName("");
                     setPassword("")
                     setUserData(response.data)
-                    setLoggedIn(true)
+                    //setLoggedIn(true)
 //navigate directly to new dashboard
                     navigate(`/users/${newUser.userId}`)
                 }
