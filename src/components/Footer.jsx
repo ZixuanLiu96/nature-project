@@ -57,8 +57,8 @@ export function Footer() {
       </footer>
       <aside className="aside sm:footer-horizontal text-center bg-base-300 text-base-content p-4">
         <p>
-          Copyright © {new Date().getFullYear()} - All right reserved by our
-          company
+          Copyright © {new Date().getFullYear()} - All right reserved by
+          Nature's Jewels
         </p>
       </aside>
     </>
