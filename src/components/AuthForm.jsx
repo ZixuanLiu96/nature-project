@@ -12,7 +12,7 @@ function AuthForm({ mode }) {
     const [error, setError] = useState(null)
     const [message, setMessage] = useState(null)
     const [loggedIn, setLoggedIn] = useState(false)
-    //const [userData, setUserData] = useState([])
+    const [userData, setUserData] = useState({})
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -30,35 +30,76 @@ function AuthForm({ mode }) {
 
         if (mode === "login") {
             console.log("Login")
-            //setMessage("Welcome back!") disappears beacuse of navigation to dashboard
-            //navigate to userdashboard
             
+            return handleLogin(userName, password)
+
         } else {
             console.log("Signup")
-            setMessage("Welcome! You successfully created an account!")
-            //navigate to login?
+            
+            return handleSignup(userName, password)
         }
-        return handleLogin(userName, password)
+
     }
 
     const handleLogin = () => {
-    
+
         axios.get("http://localhost:5005/user")
-       .then((response) => setUserData(response.data))
-       //search in data for matching userName & password find()?
-       //store Id in context?
-       .then((response) => {})
-       .catch((error) => console.log(error))
+            //search in data for matching userName & password with find
+            .then((response) => {
+                const foundUser = response.data.find(u => u.userName === userName && u.password === password)
 
-       if ( user.userName === userName && user.password === password ) {
-        setLoggedIn(true)
-        setError(null)
-        navigate("/dashboard")
-       } else {
-        setError("Invalid username or password")
-       }
-       
+                if (foundUser) {
+                    setUserData(foundUser)//store Id for use in context
+                    setLoggedIn(true)
+                    setError(null)
+                    navigate("/dashboard")
+                } else {
+                    setError("Invalid username or password!")
+                    setLoggedIn(false)
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+                setError("Error, please try again later")
+            })
+    }
 
+
+    const handleSignup = () => {
+
+        const newUser = {
+            userName: userName,
+            password: password,
+            userId: Date.now()
+        };
+//check if userdata already exist
+        axios
+            .get("http://localhost:5005/user")
+            .then((response) => {
+                const exists = response.data.find((u) => u.userName === userName || u.password === password);
+                if (exists) {
+                    setError("Username or password already exist!")
+                    return;
+                }
+
+                return axios.post("http://localhost:5005/user", newUser)
+            })
+//add new data to backend
+            .then((response) => {
+                if (response) {
+                    console.log("New user created:", response.data);
+                    setUserName("");
+                    setPassword("")
+                    setUserData(response.data)
+                    setLoggedIn(true)
+//navigate directly to new dashboard
+                    navigate("/dashboard")
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+                setError("Error, please try again!")
+            })
     }
 
     return (
