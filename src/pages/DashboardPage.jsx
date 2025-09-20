@@ -1,8 +1,12 @@
+import NavBarUser from "../components/NavBarUser"
 
 
 function DashboardPage() {
   return (
-    <div>DashboardPage</div>
+    <div>
+      <NavBarUser />
+      <h2>DashboardPage</h2>
+    </div>
   )
 }
 
