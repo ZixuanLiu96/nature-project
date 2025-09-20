@@ -52,7 +52,7 @@ function AuthForm({ mode }) {
                     setUserData(foundUser)//store Id for use in context
                     setLoggedIn(true)
                     setError(null)
-                    navigate("/dashboard")
+                    navigate(`/users/${foundUser.userId}`)
                 } else {
                     setError("Invalid username or password!")
                     setLoggedIn(false)
@@ -93,7 +93,7 @@ function AuthForm({ mode }) {
                     setUserData(response.data)
                     setLoggedIn(true)
 //navigate directly to new dashboard
-                    navigate("/dashboard")
+                    navigate(`/users/${newUser.userId}`)
                 }
             })
             .catch((error) => {
