@@ -1,7 +1,11 @@
 import NavBarUser from "../components/NavBarUser"
 
 
+
 function DashboardPage() {
+
+  
+
   return (
     <div>
       <NavBarUser />

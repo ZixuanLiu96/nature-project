@@ -6,6 +6,7 @@ import DashboardPage from "./pages/DashboardPage";
 import ErrorPage from "./pages/ErrorPage";
 import { Footer } from "./components/Footer";
 import "./App.css";
+import ProtectedRoutes from "./components/ProtectedRoutes";
 
 function App() {
   return (
@@ -14,10 +15,11 @@ function App() {
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/signup" element={<SignUpPage />}></Route>
-        <Route path="/users/:id" element={<DashboardPage />}></Route>
         <Route path="*" element={<ErrorPage />}></Route>
+        <Route path="/users/:id" element={<ProtectedRoutes><DashboardPage /></ProtectedRoutes>} />
       </Routes>
 
+     
       <Footer></Footer>
     </div>
   );
