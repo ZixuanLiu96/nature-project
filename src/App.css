@@ -1,8 +1,5 @@
-
 @import "tailwindcss";
 @plugin "daisyui";
-
-
 
 ul {
   list-style: none;
@@ -12,10 +9,37 @@ a {
   text-decoration: none;
 }
 
-html {
+/* html {
   font-size: 62.5%;
-}
+} */
 
 body {
   font-family: "Quicksand", sans-serif;
-} 
+}
+
+/* h1 {
+  font-size: 12rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 7.2rem;
+  font-weight: 400;
+} */
+
+/* scenic-wall */
+
+/* about */
+.about {
+  width: 80%;
+  /* margin: 10rem auto; */
+  border: 2px dashed #aaa;
+  border-radius: 8px;
+}
+
+/* footer */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
