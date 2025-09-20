@@ -39,11 +39,11 @@ export default function HomePage() {
 
         <About />
 
-        <Login />
+        <Login mode={mode} setMode={setMode} />
         <Team />
       </div>
 
-      <div className="flex flex-col items-center justify-center min-h-screen gap-4">
+      {/* <div className="flex flex-col items-center justify-center min-h-screen gap-4">
         <button className="btn btn-primary" onClick={() => setMode("login")}>
           Log in
         </button>
@@ -51,7 +51,7 @@ export default function HomePage() {
           Sign up
         </button>
         {mode && <AuthModal mode={mode} onClose={() => setMode(null)} />}
-      </div>
+      </div> */}
     </div>
   );
 }

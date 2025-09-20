@@ -10,7 +10,7 @@ import ProtectedRoutes from "./components/ProtectedRoutes";
 
 function App() {
   return (
-    <div>
+    <div className="bg-base-300">
       <Routes>
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
