@@ -14,17 +14,18 @@ function NavBarUser() {
                         </div>
                         <ul
                             tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                            className="menu menu-sm dropdown-content bg-white/50 rounded-box z-1 mt-3 w-52 p-2 shadow">
                             <li><NavLink to="/user/:id">Explore</NavLink></li>
                             <li>
                                 <NavLink to="/my-collection">My collection</NavLink>
 
                                 <ul className="p-2">
-                                    <li><NavLink to="/new-scenery">Add new scenery</NavLink></li>
+                                    <li><NavLink to="/new-scenery">Add New Spot</NavLink></li>
                                     <li><a>Submenu 2</a></li>
                                 </ul>
                             </li>
-                            <li></li>
+                             <li><NavLink to="/user/:id">My Profile</NavLink></li>
+                            <li>Logout</li>
                         </ul>
                     </div>
                     <NavLink to="/" className="btn btn-ghost text-xl">Nature's Jewels</NavLink>
@@ -45,8 +46,8 @@ function NavBarUser() {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <span className="text-xl m-2">Hello, {user.userName}!  </span>
-                    <button onClick={logout} className="btn btn-primary bg-[#f59f00] border-none shadow-none text-lg hover:bg-amber-400 m-2">Log out</button>
+                    <span className="text-xl m-2 hidden sm:block">Hello, {user.userName}!</span>
+                    <button onClick={logout} className="btn btn-primary bg-[#f59f00] border-none shadow-none text-lg hover:bg-amber-400 m-2 hidden sm:block">Log out</button>
                 </div>
             </div>
         </>

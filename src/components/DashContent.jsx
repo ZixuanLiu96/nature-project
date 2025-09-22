@@ -1,25 +1,24 @@
 import SpotCard from "./SpotCard"
+import TestGallery from "./TestGallery"
 
 function DashContent() {
-  return (
-    <div>
-        <div className="p-5">
-            Preview: My Collection: show first three?
-        </div>
-        
-        <div className="bg-amber-300 p-5 w-150 flex justify-start gap-4">
-            <button>Gallery view</button>
-            <button>Map view</button>
-            <button>Add new spot</button>
-        </div>
+    return (
+        <div>
+            <div className="p-5">
+                <h2 className="text-xl font-bold p-4 flex justify-center">My collection</h2>
+                <SpotCard />
+            </div>
 
-        <div className="p-5">
-            Explore
-            <SpotCard />
+            <div className="bg-amber-300 p-5 w-150 flex justify-start gap-4">
+                <button>Gallery view</button>
+                <button>Map view</button>
+                <button>Add new spot</button>
+            </div>
+
+            <TestGallery />
+            <div className="p-10"></div>
         </div>
-        <div className="p-20"></div>
-    </div>
-  )
+    )
 }
 
 export default DashContent
