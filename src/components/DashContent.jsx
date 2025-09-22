@@ -9,7 +9,7 @@ function DashContent() {
                 <SpotCard />
             </div>
 
-            <div className="bg-amber-300 p-5 w-150 flex justify-start gap-4">
+            <div className="bg-amber-300 p-5 w-full flex gap-4 place-content-around">
                 <button>Gallery view</button>
                 <button>Map view</button>
                 <button>Add new spot</button>

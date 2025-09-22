@@ -29,16 +29,16 @@ export default function Team() {
           <div
             className="rounded-full w-50 h-50 mt-100] "
             style={{
-              backgroundImage: "url(/images/hiking.jpg)",
+              backgroundImage: "url(/images/Barbara.jpg)",
               backgroundPosition: "center",
               backgroundSize: "contain",
             }}
           ></div>
-          <h3 className="font-medium text-2xl">Barbara Glodbeck</h3>
-          <a href={"#"} className="text-lg">
+          <h3 className="font-medium text-2xl">Barbara Goldbeck</h3>
+          <a href={"www.linkedin.com/in/barbara-goldbeck-7ba383367"} className="text-lg">
             Linkedin
           </a>
-          <a href={"#"} className="text-lg">
+          <a href={"https://github.com/Baba-labab"} className="text-lg">
             GitHub
           </a>
         </div>
