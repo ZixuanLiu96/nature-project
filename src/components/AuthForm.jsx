@@ -119,7 +119,7 @@ function AuthForm({ mode }) {
                 </div>
             )
             }
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4" >
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4 items-center text-gray-950" >
 
                 <input
                     type="text"
@@ -136,7 +136,7 @@ function AuthForm({ mode }) {
                     onChange={(e) => setPassword(e.target.value)}
                 />
 
-                <button type="submit" className="btn btn-soft btn-primary">
+                <button type="submit" className="btn btn-primary bg-[#15aabf] border-none shadow-none w-60 text-lg hover:bg-cyan-300">
                     {mode === "login" ? "Login" : "Sign up"}
                 </button>
 
