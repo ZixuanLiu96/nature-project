@@ -1,5 +1,5 @@
 import NavBarUser from "../components/NavBarUser"
-
+import DashContent from "../components/DashContent"
 
 
 function DashboardPage() {
@@ -9,7 +9,8 @@ function DashboardPage() {
   return (
     <div>
       <NavBarUser />
-      <h2>DashboardPage</h2>
+      <DashContent />
+      
     </div>
   )
 }

@@ -6,7 +6,7 @@ function NavBarUser() {
 
     return (
         <>
-            <div className="navbar bg-base-100 shadow-sm">
+            <div className="navbar bg-[#15aabf] shadow-sm text-white">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -29,23 +29,24 @@ function NavBarUser() {
                     </div>
                     <NavLink to="/" className="btn btn-ghost text-xl">Nature's Jewels</NavLink>
                 </div>
-                <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1">
+                <div className="navbar-center hidden lg:flex ">
+                    <ul className="menu menu-horizontal px-1 text-lg">
                         <li><NavLink to="/user/:id">Explore</NavLink></li>
                         <li>
                             <details>
-                                <summary>My Collections</summary>
-                                <ul className="p-2">
+                                <summary>My Collection</summary>
+                                <ul className="p-2 bg-[#f59f00] dropdown-content menu">
                                     <li><NavLink to="/my-collection">My collection</NavLink></li>
-                                    <li><NavLink to="/new-scenery">Add new scenery</NavLink></li>
+                                    <li><NavLink to="/new-scenery">Add new spot</NavLink></li>
                                 </ul>
                             </details>
                         </li>
+                        <li><NavLink to="/user/:id">My Profile</NavLink></li>
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <span>Hello, {user.userName}!</span>
-                    <button onClick={logout} className="btn">Log out</button>
+                    <span className="text-xl m-2">Hello, {user.userName}!  </span>
+                    <button onClick={logout} className="btn btn-primary bg-[#f59f00] border-none shadow-none text-lg hover:bg-amber-400 m-2">Log out</button>
                 </div>
             </div>
         </>
