@@ -7,6 +7,7 @@ import ErrorPage from "./pages/ErrorPage";
 import { Footer } from "./components/Footer";
 import "./App.css";
 import ProtectedRoutes from "./components/ProtectedRoutes";
+import SingleSpotPage from "./pages/SingleSpotPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/signup" element={<SignUpPage />}></Route>
         <Route path="*" element={<ErrorPage />}></Route>
         <Route path="/users/:id" element={<ProtectedRoutes><DashboardPage /></ProtectedRoutes>} />
+        <Route path="/users/:id" element={<ProtectedRoutes><SingleSpotPage /></ProtectedRoutes>} />
       </Routes>
 
      

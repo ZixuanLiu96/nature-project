@@ -3,7 +3,7 @@
 function SpotCard() {
     return (
         <div>
-            <div className="relative group w-100 h-70 rounded-lg overflow-hidden">
+            <div className="relative group w-50 h-50 rounded-lg overflow-hidden flex justify-center">
                 <img
                     src="/images/forest.jpg"
                     alt="forest"
