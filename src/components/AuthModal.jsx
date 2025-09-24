@@ -6,7 +6,7 @@ function AuthModal({ mode, onClose }) {
     return (
         <dialog open className="modal">
             <div className='modal-box'>
-                <h2 className="text-xl font-bold mb-4"> 
+                <h2 className="text-xl font-bold mb-4 text-gray-950"> 
                 { mode === "login" ? "Login" : "Sign up"}
                 </h2>
 
