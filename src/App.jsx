@@ -7,11 +7,15 @@ import ErrorPage from "./pages/ErrorPage";
 import { Footer } from "./components/Footer";
 import "./App.css";
 import ProtectedRoutes from "./components/ProtectedRoutes";
+
+import SingleSpotPage from "./pages/SingleSpotPage";
+
 import ExplorePage from "./pages/ExplorePage";
 import CollectionPage from "./pages/CollectionPage";
 import UserOutlinePage from "./pages/UserOutlinePage";
 import NewSceneryPage from "./pages/NewSceneryPage";
 import FavouritePage from "./pages/FavouritePage";
+
 
 function App() {
   return (
@@ -45,6 +49,10 @@ function App() {
           }
         ></Route>
         <Route path="*" element={<ErrorPage />}></Route>
+//new protected routes
+        <Route path="/users/:id" element={<ProtectedRoutes><DashboardPage /></ProtectedRoutes>} />
+        <Route path="/users/:id" element={<ProtectedRoutes><SingleSpotPage /></ProtectedRoutes>} />
+
       </Routes>
 
       <Footer></Footer>

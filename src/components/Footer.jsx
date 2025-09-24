@@ -1,7 +1,7 @@
 export function Footer() {
   return (
     <>
-      <footer className="footer text-based  text-white sm:footer-horizontal bg-[#15aabf] text-base-content p-10">
+      <footer className="footer text-based  text-white sm:footer-horizontal bg-[#15aabf] p-10">
         <nav className="flex flex-col items-center gap-5">
           <h6 className="footer-title">Services</h6>
           <a className="link link-hover">Branding</a>
@@ -57,7 +57,7 @@ export function Footer() {
       </footer>
       <aside className="aside sm:footer-horizontal text-center bg-base-300 text-base-content p-4">
         <p>
-          Copyright © {new Date().getFullYear()} - All right reserved by
+          Copyright © {new Date().getFullYear()} - All rights reserved by
           Nature's Jewels
         </p>
       </aside>

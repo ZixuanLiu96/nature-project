@@ -1,3 +1,6 @@
+
+import NavBarUser from "../components/NavBarUser"
+import DashContent from "../components/DashContent"
 import { Outlet, useNavigate } from "react-router-dom";
 import NavBarUser from "../components/NavBarUser";
 import { useUser } from "../context/user.context";
@@ -10,9 +13,12 @@ function DashboardPage({ children }) {
     if (!user) navigate("/");
   }, [user, navigate]);
 
+
   return (
     <div>
       <NavBarUser />
+      <DashContent />
+    
       {children || <Outlet />}
     </div>
   );
