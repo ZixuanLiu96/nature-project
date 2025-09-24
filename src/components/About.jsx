@@ -32,7 +32,7 @@ export default function About() {
 
       {/* the description of each function */}
       <div className="description px-60 py-20 flex flex-col justify-center gap-20">
-        <div className="flex gap-10 self-end items-end">
+        <div className="flex gap-10 self-end items-center">
           <div className="flex flex-col w-150 gap-5  px-10 py-5">
             <h3 className="text-2xl font-medium underline">Share Scenery</h3>
             <p className="text-lg">
@@ -52,7 +52,7 @@ export default function About() {
           ></div>
         </div>
 
-        <div className="flex gap-10 self-end items-end">
+        <div className="flex gap-10 self-end items-center">
           <div
             className="w-80 h-80 rounded-full"
             style={{
@@ -72,7 +72,7 @@ export default function About() {
           </div>
         </div>
 
-        <div className="flex gap-10 self-end items-end">
+        <div className="flex gap-10 self-end items-center">
           <div className="flex flex-col w-150 gap-5  px-10 py-5">
             <h3 className="text-2xl font-medium underline">Pin The Map</h3>
             <p className="text-lg">
@@ -92,7 +92,7 @@ export default function About() {
           ></div>
         </div>
 
-        <div className="flex gap-10 self-end items-end">
+        <div className="flex gap-10 self-end items-center">
           <div
             className="w-80 h-80 rounded-full"
             style={{
