@@ -50,7 +50,6 @@ function App() {
         ></Route>
         <Route path="*" element={<ErrorPage />}></Route>
 //new protected routes
-        <Route path="/users/:id" element={<ProtectedRoutes><DashboardPage /></ProtectedRoutes>} />
         <Route path="/users/:id" element={<ProtectedRoutes><SingleSpotPage /></ProtectedRoutes>} />
 
       </Routes>
