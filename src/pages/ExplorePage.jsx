@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function ExplorePage() {
-  const [imgs, setImgs] = useState([]);
+  const [imgs, setImgs] = useState(() => {
+    const spots = localStorage.getItem("spots");
+    return spots
+      ? JSON.parse(spots).filter((spot) => spot.isPrivate == false)
+      : [];
+  });
   useEffect(() => {
     (async () => {
       await axios
@@ -10,8 +15,11 @@ export default function ExplorePage() {
         .then((res) => {
           console.log(res.data);
           // console.log(res.data[0].imgUrl);
-
-          setImgs(res.data.filter((spot) => spot.isPrivate == false));
+          const copyData = [
+            ...res.data.filter((spot) => spot.isPrivate == false),
+          ];
+          setImgs(copyData);
+          localStorage.setItem("spots", JSON.stringify(copyData));
         })
         .catch((error) => console.log(error));
     })();

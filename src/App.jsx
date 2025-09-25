@@ -15,7 +15,7 @@ import CollectionPage from "./pages/CollectionPage";
 import UserOutlinePage from "./pages/UserOutlinePage";
 import NewSceneryPage from "./pages/NewSceneryPage";
 import FavouritePage from "./pages/FavouritePage";
-
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   return (
@@ -36,6 +36,8 @@ function App() {
           <Route path="my-collection" element={<CollectionPage />}></Route>
           <Route path="new-scenery" element={<NewSceneryPage />}></Route>
           <Route path="favourite" element={<FavouritePage />}></Route>
+          <Route path="spot-detail" element={<SingleSpotPage />}></Route>
+          <Route path="profile" element={<ProfilePage />}></Route>
         </Route>
 
         <Route
@@ -49,9 +51,6 @@ function App() {
           }
         ></Route>
         <Route path="*" element={<ErrorPage />}></Route>
-//new protected routes
-        <Route path="/users/:id" element={<ProtectedRoutes><SingleSpotPage /></ProtectedRoutes>} />
-
       </Routes>
 
       <Footer></Footer>
