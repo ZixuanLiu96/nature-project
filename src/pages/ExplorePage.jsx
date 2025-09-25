@@ -1,8 +1,22 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useSpots } from "../context/spots.context"
+import SpotCard from "../components/SpotCard";
 
 export default function ExplorePage() {
-  const [imgs, setImgs] = useState(() => {
+  const { exploreSpots, fetchExploreSpots, loading, error } = useSpots()
+
+  useEffect(() => {
+    fetchExploreSpots()
+
+  }, []);
+
+  if (loading) return <p>Loading spots</p>
+  if (error) return <p>{error}</p>
+
+
+
+  /* const [imgs, setImgs] = useState(() => {
     const spots = localStorage.getItem("spots");
     return spots
       ? JSON.parse(spots).filter((spot) => spot.isPrivate == false)
@@ -23,28 +37,37 @@ export default function ExplorePage() {
         })
         .catch((error) => console.log(error));
     })();
-  }, []);
+  }, []); */
 
   // console.log(imgs);
   // console.log(imgs[0]?.imgUrl);
 
   return (
-    <div className="flex flex-wrap items-center justify-center gap-2">
-      {imgs &&
-        imgs.map((img) => (
-          <div
-            key={img.id}
-            className="w-100 h-100 text-[#fff]"
-            style={{
-              backgroundImage: `url(${img.imgUrl})`,
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "cover",
-            }}
-          >
-            {img.title}
-          </div>
+    <div>
+      <div>
+        <p className="p-4 text-center font-semibold text-2xl">Explore the vast collection of beautiful sceneries of the community</p>
+      </div>
+      <div className="flex flex-wrap items-center justify-center gap-2">
+      {exploreSpots &&
+        exploreSpots.map((spot) => (
+          <SpotCard key={spot.id} spot={spot} />
+
+          /*  <div
+             key={spot.id}
+             className="w-100 h-100 text-[#fff]"
+             style={{
+               backgroundImage: `url(${spot.imgUrl})`,
+               backgroundPosition: "center",
+               backgroundRepeat: "no-repeat",
+               backgroundSize: "cover",
+             }}
+           >
+             {spot.title}
+           </div> */
         ))}
     </div>
+    <div className="p-10"></div>
+    </div>
+    
   );
 }
