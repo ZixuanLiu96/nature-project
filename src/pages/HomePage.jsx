@@ -13,7 +13,7 @@ export default function HomePage() {
   return (
     <div className="bg-base-300">
       <div className="">
-        <div className="header h-screen bg-[url(public/images/water.jpg)] bg-center bg-no-repeat bg-cover relative flex flex-col">
+        <div className="header h-screen bg-[url(/images/water.jpg)] bg-center bg-no-repeat bg-cover relative flex flex-col">
           <nav className="bg-[#15aabf] w-full h-16 fixed top-0 left-0 z-100 flex justify-end items-center px-30">
             <Anchor
               direction="horizontal"

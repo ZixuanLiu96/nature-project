@@ -43,3 +43,31 @@ h2 {
   align-items: center;
   justify-content: space-around;
 }
+
+label {
+  font-size: 16px;
+}
+
+form {
+  padding-top: 20px;
+}
+
+/* .upload .ant-upload-list, */
+.new-btn .ant-upload-list {
+  justify-content: center;
+}
+
+/* .upload .ant-row, */
+.new-btn .ant-row {
+  justify-content: center;
+}
+
+.new-btn .ant-col-18 {
+  max-width: 15%;
+}
+
+.ant-btn {
+  font-size: 16px;
+  height: 40px;
+  width: 110px;
+}
