@@ -1,3 +1,9 @@
+import ImgUpload from "../components/ImgUpload";
+
 export default function NewSceneryPage() {
-  return <div>add your scenery here</div>;
+  return (
+    <div>
+      <ImgUpload />
+    </div>
+  );
 }
