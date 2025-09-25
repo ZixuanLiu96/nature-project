@@ -7,20 +7,20 @@ import ErrorPage from "./pages/ErrorPage";
 import { Footer } from "./components/Footer";
 import "./App.css";
 import ProtectedRoutes from "./components/ProtectedRoutes";
-
 import SingleSpotPage from "./pages/SingleSpotPage";
-
 import ExplorePage from "./pages/ExplorePage";
 import CollectionPage from "./pages/CollectionPage";
 import UserOutlinePage from "./pages/UserOutlinePage";
 import NewSceneryPage from "./pages/NewSceneryPage";
 import FavouritePage from "./pages/FavouritePage";
 import ProfilePage from "./pages/ProfilePage";
+import { SpotsProvider } from "./context/spots.context";
 
 function App() {
   return (
     <div className="bg-base-300">
-      <Routes>
+      <SpotsProvider>
+<Routes>
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/signup" element={<SignUpPage />}></Route>
@@ -52,6 +52,9 @@ function App() {
         ></Route>
         <Route path="*" element={<ErrorPage />}></Route>
       </Routes>
+
+      </SpotsProvider>
+      
 
       <Footer></Footer>
     </div>
