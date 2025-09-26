@@ -14,12 +14,12 @@ import UserOutlinePage from "./pages/UserOutlinePage";
 import NewSceneryPage from "./pages/NewSceneryPage";
 import FavouritePage from "./pages/FavouritePage";
 import ProfilePage from "./pages/ProfilePage";
-import { SpotsProvider } from "./context/spots.context";
+
 
 function App() {
   return (
     <div className="bg-base-300">
-      <SpotsProvider>
+      
 <Routes>
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
@@ -53,7 +53,7 @@ function App() {
         <Route path="*" element={<ErrorPage />}></Route>
       </Routes>
 
-      </SpotsProvider>
+    
       
 
       <Footer></Footer>

@@ -1,16 +1,20 @@
 import { useUser } from "../context/user.context";
+import { useSpots } from "../context/spots.context"
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect } from "react";
+import SpotCard from "../components/SpotCard";
+//import { useEffect, useState } from "react";
+//import axios from "axios";
 
 export default function UserOutlinePage() {
   const { user } = useUser();
-  const [spotsData, setSpotsData] = useState(() => {
+  const { exploreSpots, favouriteSpots, fetchExploreSpots, fetchFavouriteSpots } = useSpots();
+  /* const [spotsData, setSpotsData] = useState(() => {
     const spots = localStorage.getItem("spots");
     return spots ? JSON.parse(spots) : [];
-  });
+  }); */
 
-  useEffect(() => {
+  /* useEffect(() => {
     (async () => {
       await axios
         .get("http://localhost:5005/spot")
@@ -25,7 +29,14 @@ export default function UserOutlinePage() {
         })
         .catch((error) => console.log(error));
     })();
-  }, []);
+  }, []); */
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    fetchExploreSpots();
+    fetchFavouriteSpots()
+
+  }, [])
 
   return (
     <>
@@ -65,7 +76,12 @@ export default function UserOutlinePage() {
               Visit your favorites
             </h2>
             <div className="flex flex-wrap justify-center gap-2">
-              <img
+              {favouriteSpots &&
+                favouriteSpots.slice(0,3).map((spot) => (
+                  <SpotCard key={spot.id} spot={spot} />
+
+                ))}
+              {/* <img
                 className="rounded-lg flex-1 min-w-[200px] max-w-[250px]"
                 src="/images/lake.jpg"
               />
@@ -76,7 +92,7 @@ export default function UserOutlinePage() {
               <img
                 className="rounded-lg flex-1 min-w-[200px] max-w-[250px]"
                 src="/images/hiking.jpg"
-              />
+              /> */}
             </div>
           </div>
 

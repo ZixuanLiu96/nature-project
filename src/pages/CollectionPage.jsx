@@ -52,7 +52,7 @@ export default function CollectionPage() {
           <h2>You don't have any collections. Go to collect.</h2>
           <NavLink
             to={`/users/${user.userId}/new-scenery`}
-            className="h-20 h-40"
+            className="h-20 w-40"
           >
             go
           </NavLink>

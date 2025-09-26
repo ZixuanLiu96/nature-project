@@ -1,11 +1,13 @@
 import { createContext, useContext, useState, useEffect } from "react"
 import axios from "axios";
+import { useUser } from "../context/user.context"
 
 // Create Context
 const SpotsContext = createContext();
 
 // Provider
 export function SpotsProvider({ children }) {
+    const { user } = useUser();
 
     // States
     const [exploreSpots, setExploreSpots] = useState([]);
@@ -55,15 +57,20 @@ export function SpotsProvider({ children }) {
     };
 
     //fetchFavouriteSpots
-    const fetchFavouriteSpots = async (favId) => {
+    const fetchFavouriteSpots = async () => {
         try {
             setLoading(true)
             setError(null)
             const res = await axios.get("http://localhost:5005/spot")
-            const favouriteData = [
-                ...res.data.filter((spot) => spot.projectId === favId),
-            ];
-            setSpotsData(favouriteData);
+            console.log(typeof user.favourites[0])
+            console.log(typeof res.data[0].id)
+
+            const favouriteData = res.data.filter((spot) => {
+                    if (user.favourites.includes(spot.id)) {
+                         return spot
+                    }
+                })
+            setFavouriteSpots(favouriteData);
             //localStorage.setItem("spots", JSON.stringify(favouriteData));
         } catch (error) {
             setError("No spots found!")
@@ -71,7 +78,9 @@ export function SpotsProvider({ children }) {
         } finally {
             setLoading(false)
         }
-    };
+
+      }
+
 
     //Initial Load
     useEffect(() => {
@@ -83,14 +92,25 @@ export function SpotsProvider({ children }) {
     //---------
 
     //Like
-    const likeSpot = (spot) => {
+    /* const likeSpot = (spot) => {
         //check if already there
 
-        setFavouriteSpots(prev => [...prev, { ...spot }])
+        setFavouriteSpots((prev) => {
+            if (prev.find((s) => s.id === spot.id)) {
+                return prev;
+            }
+            return [...prev, { ...spot }]
+        });
 
         // POST to backend
-
-    }
+        try {
+            await axios.post(`http://localhost:5005/users/${user.id}/favorites` {
+                spotId: spot.id,
+            })
+        } catch (error) {
+            console.log("Error adding favourite", err)
+        }
+    }; */
 
     //Delete own spot
     const deleteSpot = (projectId) => {
@@ -128,7 +148,7 @@ export function SpotsProvider({ children }) {
                 fetchFavouriteSpots,
                 fetchUserSpots,
                 fetchExploreSpots,
-                likeSpot,
+               // likeSpot,
                 deleteSpot,
                 deleteFavourite,
                 editSpot,
