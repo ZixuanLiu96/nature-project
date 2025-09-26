@@ -2,10 +2,13 @@
 import { useSpots } from "../context/spots.context"
 import { useEffect, useState } from "react";
 import SpotCard from "../components/SpotCard";
+import { Link } from "react-router-dom"
+import { useUser } from "../context/user.context"
 
 export default function FavouritePage() {
   const { favouriteSpots, fetchFavouriteSpots, loading, error } = useSpots()
-  //const [dataCopy, setDataCopy] = useState([]);
+  const { user } = useUser();
+  //const [dataCopy, setDataCopy] = useState([]); 
   //const [favorites, setFavorites] = useState([])
 
   // get the data
@@ -28,18 +31,28 @@ export default function FavouritePage() {
        setFavorites(favoriteSpots)
      })();
    }, []); */
+
   return (
     <div>
       <div>
         <p className="p-4 text-center font-semibold text-2xl">My favourites</p>
       </div>
       <div className="flex flex-wrap items-center justify-center gap-2">
-        {favouriteSpots &&
+        {favouriteSpots && favouriteSpots.length > 0 ? (
           favouriteSpots.map((spot) => (
             <SpotCard key={spot.id} spot={spot} />
-
-          ))}
+          ))
+        ) : (
+          <div className="text-center w-full">
+            <p className="text-xl font-medium  p-4 text-center">There are no sceneries in your favourites' collection. You can start now exploring!</p>
+            <Link to={`/users/explore`}>
+              <button className="bg-[#f59f00] p-5 rounded-lg text-lg font-bold text-white">Explore</button></Link>
+          </div>
+        )
+        }
       </div>
       <div className="p-10"></div>
     </div>
-  )}
+  )
+   
+  }

@@ -7,6 +7,7 @@ export default function ExplorePage() {
   const { exploreSpots, fetchExploreSpots, loading, error } = useSpots()
 
   useEffect(() => {
+    window.scrollTo(0,0);
     fetchExploreSpots()
 
   }, []);
