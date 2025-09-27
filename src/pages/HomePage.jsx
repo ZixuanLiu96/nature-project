@@ -1,4 +1,3 @@
-import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import AuthModal from "../components/AuthModal";
 import ScenicWall from "../components/ScenicWall";
@@ -13,35 +12,39 @@ export default function HomePage() {
   return (
     <div className="bg-base-300">
       <div className="">
-        <div className="header h-screen bg-[url(/images/water.jpg)] bg-center bg-no-repeat bg-cover relative flex flex-col">
-          <nav className="bg-[#15aabf] w-full h-16 fixed top-0 left-0 z-100 flex justify-end items-center px-30">
-            <Anchor
-              direction="horizontal"
-              items={[
-                {
-                  key: "scenic-wall",
-                  href: "#scenic-wall",
-                  title: "Scenic Wall",
-                },
-                {
-                  key: "about",
-                  href: "#about",
-                  title: "About",
-                },
-                {
-                  key: "login",
-                  href: "#log-in",
-                  title: "Log In",
-                },
-                {
-                  key: "team",
-                  href: "#team",
-                  title: "Team",
-                },
-              ]}
-              className="anchor"
-            />
-          </nav>
+        <nav className="bg-[#15aabf] w-full h-16 fixed top-0 left-0 z-100 flex justify-end items-center px-30">
+          <Anchor
+            direction="horizontal"
+            items={[
+              { key: "logo", href: "#logo", title: "Nature's Jewels" },
+              {
+                key: "scenic-wall",
+                href: "#scenic-wall",
+                title: "Scenic Wall",
+              },
+              {
+                key: "about",
+                href: "#about",
+                title: "About",
+              },
+              {
+                key: "login",
+                href: "#log-in",
+                title: "Log In",
+              },
+              {
+                key: "team",
+                href: "#team",
+                title: "Team",
+              },
+            ]}
+            className="anchor"
+          />
+        </nav>
+        <div
+          id="logo"
+          className="header h-screen bg-[url(/images/water.jpg)] bg-center bg-no-repeat bg-cover relative flex flex-col"
+        >
           <div className="flex flex-col items-center justify-center flex-grow pr-4 text-center bg-white/75 max-w-3xl rounded-r-lg -mb-18 mt-100 ">
             <h1 className="leading-tight font-[Ephesis] text-[#333] font-bold tracking-widest text-4xl sm:text-7xl md:text-9xl lg:text-[9rem]">
               <span className="text-6xl sm:text-7xl md:text-8xl lg:text-[10rem]">

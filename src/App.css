@@ -71,3 +71,27 @@ form {
   height: 40px;
   width: 110px;
 }
+
+.ant-anchor-wrapper .ant-anchor {
+  font-size: 17px;
+  gap: 15px;
+}
+
+.ant-anchor-wrapper-horizontal::before {
+  border-bottom: none;
+}
+
+.ant-anchor-wrapper-horizontal .ant-anchor .ant-anchor-ink {
+  background-color: #f59f00;
+}
+
+.ant-anchor-wrapper .ant-anchor .ant-anchor-link-title {
+  color: #fff;
+}
+
+.ant-anchor-wrapper
+  .ant-anchor
+  .ant-anchor-link-active
+  > .ant-anchor-link-title {
+  color: #f59f00;
+}

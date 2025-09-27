@@ -1,9 +1,12 @@
-import React from 'react'
+import NewForm from "../components/NewForm";
 
 function EditPage() {
-  return (
-    <div>EditPage</div>
-  )
+  const pageTitle = "Edit your scenery";
+  const bg = "/images/antelope.jpg";
+  function handleForm(e) {
+    e.preventDefault();
+  }
+  return <NewForm pageTitle={pageTitle} onHandleForm={handleForm} bg={bg} />;
 }
 
-export default EditPage
+export default EditPage;

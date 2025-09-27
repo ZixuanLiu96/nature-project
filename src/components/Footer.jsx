@@ -55,7 +55,7 @@ export function Footer() {
           </div>
         </nav>
       </footer>
-      <aside className="aside sm:footer-horizontal text-center bg-base-300 text-base-content p-4">
+      <aside className="aside sm:footer-horizontal test-xs sm:text-xs md:text-sm lg:text-sm text-center bg-base-300 text-base-content p-4">
         <p>
           Copyright © {new Date().getFullYear()} - All rights reserved by
           Nature's Jewels
