@@ -24,9 +24,8 @@ export function SpotsProvider({ children }) {
             setLoading(true)
             setError(null)
             const res = await axios.get("http://localhost:5005/spot")
-            const exploreData = [
-                ...res.data.filter((spot) => spot.isPrivate === false),
-            ];
+            console.log(res)
+            const exploreData = res.data.filter((spot) => spot.isPrivate === false);
             setExploreSpots(exploreData);
             //localStorage.setItem("spots", JSON.stringify(exploreData));
         } catch (error) {
@@ -43,9 +42,7 @@ export function SpotsProvider({ children }) {
             setLoading(true)
             setError(null)
             const res = await axios.get("http://localhost:5005/spot")
-            const userSpotData = [
-                ...res.data.filter((spot) => spot.projectId === userId),
-            ];
+            const userSpotData = res.data.filter((spot) => spot.projectId === userId);
             setUserSpots(userSpotData);
             //localStorage.setItem("spots", JSON.stringify(userSpotData));
         } catch (error) {
@@ -62,8 +59,6 @@ export function SpotsProvider({ children }) {
             setLoading(true)
             setError(null)
             const res = await axios.get("http://localhost:5005/spot")
-            console.log(typeof user.favourites[0])
-            console.log(typeof res.data[0].id)
 
             const favouriteData = res.data.filter((spot) => {
                     if (user.favourites.includes(spot.id)) {
@@ -84,7 +79,9 @@ export function SpotsProvider({ children }) {
 
     //Initial Load
     useEffect(() => {
-        fetchExploreSpots()
+        fetchExploreSpots();
+        fetchFavouriteSpots();
+        fetchUserSpots();
     }, []);
 
     //---------
@@ -113,29 +110,29 @@ export function SpotsProvider({ children }) {
     }; */
 
     //Delete own spot
-    const deleteSpot = (projectId) => {
+   /*  const deleteSpot = (projectId) => {
         setUserSpots(prev => prev.filter((s) => s.id !== projectId));
 
         //DELETE request to backend
-    }
+    } */
 
     //Delete favourite
-    const deleteFavourite = (favId) => {
+    /* const deleteFavourite = (favId) => {
         setFavouriteSpots(prev => prev.filter((s) => s.id !== favId));
 
         // DELETE request to backend
-    }
+    } */
 
     //Edit
-    const editSpot = (projectId, newData) => {
+   /*  const editSpot = (projectId, newData) => {
         setUserSpots(prev =>
             prev.map((s) => (s.id !== projectId
                 ? { ...s, ...newData }
                 : s))
-        );
+        ); 
 
         // PUT request to backend
-    }
+    }*/
 
     return (
         <SpotsContext.Provider
@@ -149,9 +146,9 @@ export function SpotsProvider({ children }) {
                 fetchUserSpots,
                 fetchExploreSpots,
                // likeSpot,
-                deleteSpot,
-                deleteFavourite,
-                editSpot,
+                //deleteSpot,
+               // deleteFavourite,
+                //editSpot,
                 setExploreSpots,
                 setUserSpots,
                 setFavouriteSpots,

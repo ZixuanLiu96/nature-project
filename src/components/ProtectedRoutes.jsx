@@ -4,7 +4,9 @@ import { useUser } from "../context/user.context"
 function ProtectedRoutes({children}) {
     const { user } = useUser(); 
 
-    if(!user) {
+    const localUser = localStorage.getItem('user')
+
+    if(!user && !localUser) {
         return <Navigate to="/" />
     }
   return children

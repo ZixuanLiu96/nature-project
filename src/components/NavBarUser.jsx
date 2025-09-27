@@ -49,17 +49,17 @@ function NavBarUser() {
                   <ul className="p-2">
                     <li>
                       <NavLink to={`/users/${user.userId}/new-scenery`}>
-                        Add new spot
+                        New scenery
                       </NavLink>
                     </li>
                     <li>
                       <NavLink to={`/users/${user.userId}/favourite`}>
-                        Add new spot
+                        My favourites
                       </NavLink>
                     </li>
-                    <li>
-                      <a>Submenu 2</a>
-                    </li>
+                   {/*  <li>
+                      <a>My</a>
+                    </li> */}
                   </ul>
                 </li>
                 <li>
@@ -79,7 +79,7 @@ function NavBarUser() {
           </div>
           {/* Navbar visible on larger screens */}
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1 text-lg">
+            <ul tabIndex={0} className="menu menu-horizontal px-1 text-lg">
               <li>
                 <NavLink to="/users/explore">Explore</NavLink>
               </li>

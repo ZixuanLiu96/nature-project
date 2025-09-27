@@ -36,7 +36,7 @@ function App() {
           <Route path="my-collection" element={<CollectionPage />}></Route>
           <Route path="new-scenery" element={<NewSceneryPage />}></Route>
           <Route path="favourite" element={<FavouritePage />}></Route>
-          <Route path="spot-detail" element={<SingleSpotPage />}></Route>
+          <Route path="spot-detail/:id" element={<SingleSpotPage />}></Route>
           <Route path="profile" element={<ProfilePage />}></Route>
         </Route>
 
