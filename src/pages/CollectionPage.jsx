@@ -1,22 +1,27 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useUser } from "../context/user.context";
-import { useSpots } from "../context/spots.context"
+import { useSpots } from "../context/spots.context";
+import SpotCard from "../components/SpotCard";
 //import axios from "axios";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 export default function CollectionPage() {
   const { user } = useUser();
 
-  const { userSpots, fetchUserSpots, loading, error } = useSpots()
+  const { userSpots, fetchUserSpots, loading, error } = useSpots();
+
+  const getSpots = async () => {
+    const data = await fetchUserSpots(user.userId);
+    console.log(data);
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    fetchUserSpots()
-
+    getSpots();
   }, []);
 
-  if (loading) return <p>Loading spots</p>
-  if (error) return <p>{error}</p>
+  if (loading) return <p>Loading spots</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <div>
@@ -25,23 +30,25 @@ export default function CollectionPage() {
       </div>
       <div className="flex flex-wrap items-center justify-center gap-2">
         {userSpots && userSpots.length > 0 ? (
-          userSpots.map((spot) => (
-            <SpotCard key={spot.id} spot={spot} />
-          ))
+          userSpots.map((spot) => <SpotCard key={spot.id} spot={spot} />)
         ) : (
           <div className="text-center w-full">
-            <p className="text-xl font-medium  p-4 text-center">There are no sceneries in your collection. You can start now by adding a new scenery!</p>
+            <p className="text-xl font-medium  p-4 text-center">
+              There are no sceneries in your collection. You can start now by
+              adding a new scenery!
+            </p>
             <Link to={`/users/${user.userId}/new-scenery`}>
-              <button className="bg-[#f59f00] p-5 rounded-lg text-lg font-bold text-white">New Scenery</button></Link>
+              <button className="bg-[#f59f00] p-5 rounded-lg text-lg font-bold text-white">
+                New Scenery
+              </button>
+            </Link>
           </div>
-        )
-        }
+        )}
       </div>
       <div className="p-10"></div>
     </div>
-  )
+  );
 }
-
 
 /* const [collections, setCollections] = useState([]);
 
