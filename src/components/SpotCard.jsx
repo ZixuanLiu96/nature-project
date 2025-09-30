@@ -4,10 +4,11 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 
-function SpotCard({ spot, singleId }) {
-  const { favouriteSpots, setFavouriteSpots, setError } = useSpots();
-  const { user, updateUser } = useUser();
-  const [isClickedId, setIsClickedId] = useState(false);
+function SpotCard({ spot }) {
+    const { favouriteSpots, setFavouriteSpots, setError } = useSpots();
+    const { user, updateUser } = useUser()
+    const [isLiked, setIsLiked ] = useState(false)
+
 
   const handleLike = async () => {
     //check if already there
