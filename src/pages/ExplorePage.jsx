@@ -1,24 +1,23 @@
 import { useEffect, useState } from "react";
 //import axios from "axios";
-import { useSpots } from "../context/spots.context"
-import { useUser } from "../context/user.context"
+import { useSpots } from "../context/spots.context";
+import { useUser } from "../context/user.context";
 import SpotCard from "../components/SpotCard";
 import { Link } from "react-router-dom";
 
 export default function ExplorePage() {
-  const { exploreSpots, fetchExploreSpots, loading, error } = useSpots()
-  const { user } = useUser()
+  const { exploreSpots, fetchExploreSpots, loading, error } = useSpots();
+  const { user } = useUser();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    fetchExploreSpots()
-    console.log(exploreSpots)
+    const data = fetchExploreSpots();
+    console.log(data);
+    console.log(exploreSpots);
   }, []);
 
-  if (loading) return <p>Loading spots</p>
-  if (error) return <p>{error}</p>
-
-
+  if (loading) return <p>Loading spots</p>;
+  if (error) return <p>{error}</p>;
 
   /* const [imgs, setImgs] = useState(() => {
     const spots = localStorage.getItem("spots");
@@ -49,15 +48,14 @@ export default function ExplorePage() {
   return (
     <div>
       <div>
-        <p className="p-4 text-center font-semibold text-2xl">Explore the vast collection of beautiful sceneries of the community</p>
+        <p className="p-4 text-center font-semibold text-2xl">
+          Explore the vast collection of beautiful sceneries of the community
+        </p>
       </div>
       <div className="flex flex-wrap items-center justify-center gap-2">
         {exploreSpots &&
           exploreSpots.map((spot) => (
-            <Link key={spot.id} to={`/users/${user.userId}/spot-detail/${spot.id}`} >
-             <SpotCard spot={spot} singleId={spot.id}></SpotCard>
-            </Link>
-           
+            <SpotCard key={spot.id} spot={spot} singleId={spot.id}></SpotCard>
 
             /*  <div
                key={spot.id}
@@ -75,6 +73,5 @@ export default function ExplorePage() {
       </div>
       <div className="p-10"></div>
     </div>
-
   );
 }

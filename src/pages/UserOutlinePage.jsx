@@ -1,5 +1,5 @@
 import { useUser } from "../context/user.context";
-import { useSpots } from "../context/spots.context"
+import { useSpots } from "../context/spots.context";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import SpotCard from "../components/SpotCard";
@@ -8,7 +8,14 @@ import SpotCard from "../components/SpotCard";
 
 export default function UserOutlinePage() {
   const { user } = useUser();
-  const { userSpots, exploreSpots, favouriteSpots, fetchUserSpots, fetchExploreSpots, fetchFavouriteSpots } = useSpots();
+  const {
+    userSpots,
+    exploreSpots,
+    favouriteSpots,
+    fetchUserSpots,
+    fetchExploreSpots,
+    fetchFavouriteSpots,
+  } = useSpots();
   /* const [spotsData, setSpotsData] = useState(() => {
     const spots = localStorage.getItem("spots");
     return spots ? JSON.parse(spots) : [];
@@ -34,9 +41,8 @@ export default function UserOutlinePage() {
     window.scrollTo(0, 0);
     fetchExploreSpots();
     fetchFavouriteSpots();
-    fetchUserSpots()
-
-  }, [])
+    // fetchUserSpots()
+  }, []);
 
   return (
     <div>
@@ -52,31 +58,34 @@ export default function UserOutlinePage() {
           {/* Collection */}
           <div className="bg-white border-cyan-700 border-dashed border-2 p-5 rounded-lg w-full">
             <Link to={`/users/${user.userId}/my-collection`}>
-             <h2 className="text-2xl font-medium underline p-2 text-center">
-              View your collection
-            </h2>
+              <h2 className="text-2xl font-medium underline p-2 text-center">
+                View your collection
+              </h2>
             </Link>
-           
+
             <div className="flex flex-wrap justify-center gap-2">
-              {userSpots && userSpots.length > 0 ?
-                (userSpots.slice(0, 3).map((spot) => (
-                  <SpotCard key={spot.id} spot={spot} />
-
-                ))
-                ) : (
-                  <div className="text-center w-full">
-                    <p className="text-l font-medium  p-4 text-center">You have no sceneries yet! You can start with uploading or exploring new sceneries:</p>
-                    <Link to="/users/:id/new-scenery">
-                      <button className="bg-[#f59f00] p-5 rounded-lg text-lg font-bold text-white m-2">
-                        New spot
-                      </button>
-                    </Link>
-                    <Link to="/users/explore">
-                      <button className="bg-[#f59f00] p-5 rounded-lg text-lg font-bold text-white">Explore</button>
-                    </Link>
-                  </div>
-
-                )}
+              {userSpots && userSpots.length > 0 ? (
+                userSpots
+                  .slice(0, 3)
+                  .map((spot) => <SpotCard key={spot.id} spot={spot} />)
+              ) : (
+                <div className="text-center w-full">
+                  <p className="text-l font-medium  p-4 text-center">
+                    You have no sceneries yet! You can start with uploading or
+                    exploring new sceneries:
+                  </p>
+                  <Link to="/users/:id/new-scenery">
+                    <button className="bg-[#f59f00] p-5 rounded-lg text-lg font-bold text-white m-2">
+                      New spot
+                    </button>
+                  </Link>
+                  <Link to="/users/explore">
+                    <button className="bg-[#f59f00] p-5 rounded-lg text-lg font-bold text-white">
+                      Explore
+                    </button>
+                  </Link>
+                </div>
+              )}
               {/*  <div className="flex flex-wrap justify-center gap-2">
               <img
                 className="rounded-lg flex-1 min-w-[200px] max-w-[250px]"
@@ -97,25 +106,28 @@ export default function UserOutlinePage() {
           {/* Favorites */}
           <div className="bg-white border-cyan-700 border-dashed border-2 p-5 rounded-lg w-full">
             <Link to={`/users/${user.userId}/favourite`}>
-             <h2 className="text-2xl font-medium underline p-4 text-center">
-              Visit your favorites
-            </h2>
+              <h2 className="text-2xl font-medium underline p-4 text-center">
+                Visit your favorites
+              </h2>
             </Link>
-           
+
             <div className="flex flex-wrap justify-center gap-2">
-              {favouriteSpots && favouriteSpots.length > 0 ?
-                (favouriteSpots.slice(0, 3).map((spot) => (
-                  <SpotCard key={spot.id} spot={spot} />
-
-                ))
-                ) : (
-                  <div className="text-center w-full">
-                    <p className="text-xl font-medium  p-4 text-center">You have no favourites yet! Get started collecting!</p>
-                    <Link to="/users/explore">
-                      <button className="bg-[#f59f00] p-5 rounded-lg text-lg font-bold text-white">Explore</button></Link>
-                  </div>
-
-                )}
+              {favouriteSpots && favouriteSpots.length > 0 ? (
+                favouriteSpots
+                  .slice(0, 3)
+                  .map((spot) => <SpotCard key={spot.id} spot={spot} />)
+              ) : (
+                <div className="text-center w-full">
+                  <p className="text-xl font-medium  p-4 text-center">
+                    You have no favourites yet! Get started collecting!
+                  </p>
+                  <Link to="/users/explore">
+                    <button className="bg-[#f59f00] p-5 rounded-lg text-lg font-bold text-white">
+                      Explore
+                    </button>
+                  </Link>
+                </div>
+              )}
               {/* <img
                 className="rounded-lg flex-1 min-w-[200px] max-w-[250px]"
                 src="/images/lake.jpg"
@@ -150,5 +162,5 @@ export default function UserOutlinePage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
