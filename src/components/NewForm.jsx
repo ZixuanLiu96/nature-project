@@ -1,7 +1,6 @@
 import { PlusOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Select, Upload, Checkbox, Alert } from "antd";
 import "@ant-design/v5-patch-for-react-19";
-import { useRef } from "react";
 
 const { TextArea } = Input;
 const normFile = (e) => {
@@ -23,6 +22,8 @@ function NewForm({
   handleSubmit,
   form,
 }) {
+  console.log(title);
+
   return (
     <>
       <div

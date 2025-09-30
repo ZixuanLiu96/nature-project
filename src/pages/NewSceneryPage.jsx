@@ -2,12 +2,12 @@ import { useState, useRef, useEffect } from "react";
 import NewForm from "../components/NewForm";
 import { useUser } from "../context/user.context";
 import axios from "axios";
-import { Form, Alert } from "antd";
+import { Form } from "antd";
 import "@ant-design/v5-patch-for-react-19";
 import { useNavigate } from "react-router-dom";
 
 export default function NewSceneryPage() {
-  const pageTitle = "Add Your Sceneries";
+  const pageTitle = "Add Your Scenery";
   const bg = "/images/field.jpg";
   const { user } = useUser();
   const [title, setTitle] = useState("");

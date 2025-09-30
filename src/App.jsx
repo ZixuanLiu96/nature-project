@@ -15,46 +15,46 @@ import NewSceneryPage from "./pages/NewSceneryPage";
 import FavouritePage from "./pages/FavouritePage";
 import ProfilePage from "./pages/ProfilePage";
 import { SpotsProvider } from "./context/spots.context";
+import EditPage from "./pages/EditPage";
 
 function App() {
   return (
     <div className="bg-base-300">
       <SpotsProvider>
-<Routes>
-        <Route path="/" element={<HomePage />}></Route>
-        <Route path="/login" element={<LoginPage />}></Route>
-        <Route path="/signup" element={<SignUpPage />}></Route>
-        <Route
-          path="/users/:id"
-          element={
-            <ProtectedRoutes>
-              <DashboardPage></DashboardPage>
-            </ProtectedRoutes>
-          }
-        >
-          <Route index element={<UserOutlinePage />}></Route>
-          <Route path="my-collection" element={<CollectionPage />}></Route>
-          <Route path="new-scenery" element={<NewSceneryPage />}></Route>
-          <Route path="favourite" element={<FavouritePage />}></Route>
-          <Route path="spot-detail" element={<SingleSpotPage />}></Route>
-          <Route path="profile" element={<ProfilePage />}></Route>
-        </Route>
+        <Routes>
+          <Route path="/" element={<HomePage />}></Route>
+          <Route path="/login" element={<LoginPage />}></Route>
+          <Route path="/signup" element={<SignUpPage />}></Route>
+          <Route
+            path="/users/:id"
+            element={
+              <ProtectedRoutes>
+                <DashboardPage></DashboardPage>
+              </ProtectedRoutes>
+            }
+          >
+            <Route index element={<UserOutlinePage />}></Route>
+            <Route path="my-collection" element={<CollectionPage />}></Route>
+            <Route path="new-scenery" element={<NewSceneryPage />}></Route>
+            <Route path="favourite" element={<FavouritePage />}></Route>
+            <Route path="spot-detail" element={<SingleSpotPage />}></Route>
+            <Route path="profile" element={<ProfilePage />}></Route>
+            <Route path="edit/:id" element={<EditPage />}></Route>
+          </Route>
 
-        <Route
-          path="/users/explore"
-          element={
-            <ProtectedRoutes>
-              <DashboardPage>
-                <ExplorePage />
-              </DashboardPage>
-            </ProtectedRoutes>
-          }
-        ></Route>
-        <Route path="*" element={<ErrorPage />}></Route>
-      </Routes>
-
+          <Route
+            path="/users/explore"
+            element={
+              <ProtectedRoutes>
+                <DashboardPage>
+                  <ExplorePage />
+                </DashboardPage>
+              </ProtectedRoutes>
+            }
+          ></Route>
+          <Route path="*" element={<ErrorPage />}></Route>
+        </Routes>
       </SpotsProvider>
-      
 
       <Footer></Footer>
     </div>

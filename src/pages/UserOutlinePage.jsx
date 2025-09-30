@@ -17,10 +17,9 @@ export default function UserOutlinePage() {
         .then((res) => {
           console.log(res.data);
           // console.log(res.data[0].imgUrl);
-          const copyData = [
-            ...res.data.filter((spot) => spot.isPrivate == false),
-          ];
-          setSpotsData(copyData);
+          const copyData = [...res.data];
+
+          setSpotsData(copyData.filter((spot) => spot.isPrivate == false));
           localStorage.setItem("spots", JSON.stringify(copyData));
         })
         .catch((error) => console.log(error));
