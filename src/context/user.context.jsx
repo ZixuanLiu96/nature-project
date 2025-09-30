@@ -18,8 +18,13 @@ export function UserProviderWrapper({ children }) {
     localStorage.removeItem("user");
   };
 
+  const updateUser = (user) => {
+    setUser(user)
+    localStorage.setItem("user", JSON.stringify(user));
+  }
+
   return (
-    <UserContext.Provider value={{ user, login, logout }}>
+    <UserContext.Provider value={{ user, login, logout, updateUser }}>
       {children}
     </UserContext.Provider>
   );

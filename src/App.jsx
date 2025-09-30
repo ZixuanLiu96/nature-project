@@ -14,13 +14,13 @@ import UserOutlinePage from "./pages/UserOutlinePage";
 import NewSceneryPage from "./pages/NewSceneryPage";
 import FavouritePage from "./pages/FavouritePage";
 import ProfilePage from "./pages/ProfilePage";
-import { SpotsProvider } from "./context/spots.context";
 import EditPage from "./pages/EditPage";
+
 
 function App() {
   return (
-    <div className="bg-base-300">
-      <SpotsProvider>
+    <div className="bg-base-300"
+
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/login" element={<LoginPage />}></Route>
@@ -37,7 +37,7 @@ function App() {
             <Route path="my-collection" element={<CollectionPage />}></Route>
             <Route path="new-scenery" element={<NewSceneryPage />}></Route>
             <Route path="favourite" element={<FavouritePage />}></Route>
-            <Route path="spot-detail" element={<SingleSpotPage />}></Route>
+            <Route path="spot-detail/:id" element={<SingleSpotPage />}></Route>
             <Route path="profile" element={<ProfilePage />}></Route>
             <Route path="edit/:id" element={<EditPage />}></Route>
           </Route>
@@ -54,7 +54,8 @@ function App() {
           ></Route>
           <Route path="*" element={<ErrorPage />}></Route>
         </Routes>
-      </SpotsProvider>
+      
+
 
       <Footer></Footer>
     </div>

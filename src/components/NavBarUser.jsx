@@ -62,12 +62,12 @@ function NavBarUser() {
                   <ul className="p-2">
                     <li>
                       <NavLink to={`/users/${user.userId}/new-scenery`}>
-                        Add new spot
+                        New scenery
                       </NavLink>
                     </li>
                     <li>
                       <NavLink to={`/users/${user.userId}/favourite`}>
-                        My favorite
+                        My favourites
                       </NavLink>
                     </li>
                   </ul>
@@ -88,6 +88,7 @@ function NavBarUser() {
             </NavLink>
           </div>
           {/* Navbar visible on larger screens */}
+
           <div className="navbar-center hidden lg:flex z-100 ">
             <ul className="menu menu-horizontal px-1 text-lg">
               <li>
@@ -124,7 +125,7 @@ function NavBarUser() {
           </div>
 
           <div className="navbar-end">
-            {/* <span className="text-xl m-2 hidden sm:block">Hello, {user.userName}!</span> */}
+            <span className="text-xl m-2 hidden sm:block">Hello, {user.userName}!</span>
             <button
               onClick={logout}
               className="btn btn-primary bg-[#f59f00] border-none shadow-none text-lg hover:bg-amber-400 m-2 hidden sm:block"
