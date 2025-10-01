@@ -1,6 +1,7 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState } from "react";
 import axios from "axios";
 import { useUser } from "../context/user.context";
+import { useNavigate } from "react-router-dom"
 
 // Create Context
 const SpotsContext = createContext();
@@ -8,6 +9,7 @@ const SpotsContext = createContext();
 // Provider
 export function SpotsProvider({ children }) {
   const { user } = useUser();
+  const navigate = useNavigate(); 
 
   // States
   const [exploreSpots, setExploreSpots] = useState([]);
@@ -101,29 +103,21 @@ export function SpotsProvider({ children }) {
     }; */
 
   //Delete own spot
-  /*  const deleteSpot = (projectId) => {
-        setUserSpots(prev => prev.filter((s) => s.id !== projectId));
 
-        //DELETE request to backend
-    } */
+  const handleDelete = async (projectId) => {
+  
+    try {
+      await axios.delete(`http://localhost:5005/spot/${projectId}`)
+      setUserSpots(prev => prev.filter((s) => s.id !== projectId))
+      navigate(`/users/${user.id}/my-collection`)
+    } 
+    catch(error) {
+      console.log(error)
+    }
 
-  //Delete favourite
-  /* const deleteFavourite = (favId) => {
-        setFavouriteSpots(prev => prev.filter((s) => s.id !== favId));
+  }
 
-        // DELETE request to backend
-    } */
 
-  //Edit
-  /*  const editSpot = (projectId, newData) => {
-        setUserSpots(prev =>
-            prev.map((s) => (s.id !== projectId
-                ? { ...s, ...newData }
-                : s))
-        ); 
-
-        // PUT request to backend
-    }*/
 
   return (
     <SpotsContext.Provider
@@ -136,10 +130,7 @@ export function SpotsProvider({ children }) {
         fetchFavouriteSpots,
         fetchUserSpots,
         fetchExploreSpots,
-        // likeSpot,
-        //deleteSpot,
-        // deleteFavourite,
-        //editSpot,
+        handleDelete, 
         setExploreSpots,
         setUserSpots,
         setFavouriteSpots,

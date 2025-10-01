@@ -1,13 +1,16 @@
 import { useSpots } from "../context/spots.context";
 import { useUser } from "../context/user.context";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 
 function SpotCard({ spot }) {
-    const { favouriteSpots, setFavouriteSpots, setError } = useSpots();
-    const { user, updateUser } = useUser()
-    const [isLiked, setIsLiked ] = useState(false)
+  const navigate = useNavigate()
+
+  const { favouriteSpots, setFavouriteSpots, setError } = useSpots();
+  const { user, updateUser } = useUser()
+  const [isLiked, setIsLiked] = useState(false)
+  const [isClicked, setIsClicked] = useState(false)
 
 
   const handleLike = async () => {
@@ -17,6 +20,7 @@ function SpotCard({ spot }) {
     if (isFavourite) {
       // remove from state
       setFavouriteSpots((prev) => prev.filter((s) => s.id !== spot.id));
+      setIsLiked(false)
 
       // update backend
       try {
@@ -42,6 +46,7 @@ function SpotCard({ spot }) {
     } else {
       // add to state
       setFavouriteSpots((prev) => [...prev, spot]);
+      setIsLiked(true)
 
       // update backend
       try {
@@ -68,21 +73,31 @@ function SpotCard({ spot }) {
 
   function handleClickPic() {
     //get the id of the image and navigate to SingleSpotPage
+
+    if (isClicked) {
+      setIsClicked(false)
+      return;
+
+    } else {
+      setIsClicked(true)
+      navigate(`/users/${user.userId}/spot-detail/${spot.id}`)
+    }
+
   }
 
   return (
     <div>
       <div className="relative group w-[200px] h-[200px] rounded-lg overflow-hidden flex justify-center">
-        <Link to={`/users/${user.userId}/spot-detail/${spot.id}`}>
-          {spot.imgUrl && (
-            <img
-              /* onClick={() => handleClickPic()} */
-              src={spot.imgUrl}
-              alt={spot.title}
-              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-          )}
-        </Link>
+        {/* <Link to={`/users/${user.userId}/spot-detail/${spot.id}`}> */}
+        {spot.imgUrl && (
+          <img
+            onClick={() => handleClickPic()}
+            src={spot.imgUrl}
+            alt={spot.title}
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+        )}
+        {/* </Link> */}
         <div
           className="absolute bottom-0 left-0 right-0 bg-white/50 flex items-center justify-center
                 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
