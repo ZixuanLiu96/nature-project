@@ -77,9 +77,14 @@ function NavBarUser() {
                     My Profile
                   </NavLink>
                 </li>
-                <li>Logout</li>
+                <li>
+                  <button className="w-full text-left" onClick={logout}>
+                    Logout
+                  </button>
+                </li>
               </ul>
             </div>
+
             <NavLink
               to={`/users/${user.userId}`}
               className="btn btn-ghost text-xl"

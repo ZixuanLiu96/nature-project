@@ -8,8 +8,8 @@ const SpotsContext = createContext();
 
 // Provider
 export function SpotsProvider({ children }) {
-  const { user } = useUser();
-  const navigate = useNavigate(); 
+  const { user, updateUser } = useUser();
+  const navigate = useNavigate();
 
   // States
   const [exploreSpots, setExploreSpots] = useState([]);
@@ -18,6 +18,8 @@ export function SpotsProvider({ children }) {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const [isLiked, setIsLiked] = useState(false)
 
   //fetch data
   //fetchExploreSpots
@@ -39,7 +41,7 @@ export function SpotsProvider({ children }) {
 
   //fetchUserSpots
   const fetchUserSpots = async (userId) => {
-    console.log(userId);
+    //console.log(userId);
     try {
       setLoading(true);
       setError(null);
@@ -64,10 +66,13 @@ export function SpotsProvider({ children }) {
       const res = await axios.get("http://localhost:5005/spot");
 
       const favouriteData = res.data.filter((spot) => {
+
         if (user.favourites.includes(spot.id)) {
           return spot;
+
         }
       });
+      console.log(favouriteData)
       setFavouriteSpots(favouriteData);
       //localStorage.setItem("spots", JSON.stringify(favouriteData));
     } catch (error) {
@@ -82,41 +87,83 @@ export function SpotsProvider({ children }) {
   //---------
 
   //Like
-  /* const likeSpot = (spot) => {
-        //check if already there
+  const handleLike = async (spot) => {
+    //check if already there
+    const isFavourite = favouriteSpots.find((s) => s.id === spot.id);
 
-        setFavouriteSpots((prev) => {
-            if (prev.find((s) => s.id === spot.id)) {
-                return prev;
-            }
-            return [...prev, { ...spot }]
+    if (isFavourite) {
+      // remove from state
+      setFavouriteSpots((prev) => prev.filter((s) => s.id !== spot.id));
+      setIsLiked(false)
+
+      // update backend
+      try {
+        const newUser = {
+          ...user,
+          favourites: favouriteSpots
+            .filter((s) => s.id !== spot.id)
+            .map((s) => s.id),
+        };
+        console.log(newUser);
+        await axios.put(`http://localhost:5005/user/${user.id}`, {
+          ...user,
+          favourites: favouriteSpots
+            .filter((s) => s.id !== spot.id)
+            .map((s) => s.id),
         });
+        console.log("User favorites: " + user.favourites);
+        updateUser(newUser);
+      } catch (error) {
+        setError(error);
+        console.log("Error on updating backend");
+      }
+    } else {
+      // add to state
+      setFavouriteSpots((prev) => [...prev, spot]);
+      setIsLiked(true)
 
-        // POST to backend
-        try {
-            await axios.post(`http://localhost:5005/users/${user.id}/favorites` {
-                spotId: spot.id,
-            })
-        } catch (error) {
-            console.log("Error adding favourite", err)
-        }
-    }; */
+      // update backend
+      try {
+        //to put the whole user information to the backend create newUser variable
+        const newUser = {
+          ...user,
+          favourites: [...favouriteSpots.map((s) => s.id), spot.id],
+        };
+        console.log(newUser);
+        await axios.put(`http://localhost:5005/user/${user.id}`, {
+          ...user,
+          favourites: [...favouriteSpots.map((s) => s.id), spot.id]
+          /* favouriteSpots
+            .filter((s) => s.id !== spot.id)
+            .map((s) => s.id),  */
+        });
+        //update localStorage
+        updateUser(newUser);
+      } catch (error) {
+        setError(error);
+        console.log("Error on updating backend", error.response?.data || error.message);
+      }
+    }
+  };
 
   //Delete own spot
 
-  const handleDelete = async (projectId) => {
-  
-    try {
-      await axios.delete(`http://localhost:5005/spot/${projectId}`)
-      setUserSpots(prev => prev.filter((s) => s.id !== projectId))
-      navigate(`/users/${user.id}/my-collection`)
-    } 
-    catch(error) {
-      console.log(error)
+  const handleDelete = async (spot) => {
+    console.log("projectId:", spot.projectId, "user.userId:", user.userId)
+    //if spot is user spot condition noch einfügen
+    if (spot.projectId === user.userId) {
+      try {
+        await axios.delete(`http://localhost:5005/spot/${spot.id}`)
+        setUserSpots(prev => prev.filter((s) => s.id !== spot.id))
+        navigate(`/users/${user.id}/my-collection`)
+      } catch (error) {
+        console.log(error)
+      }
+    } else {
+
+      console.log("This is not your spot.")
     }
-
   }
-
 
 
   return (
@@ -130,7 +177,8 @@ export function SpotsProvider({ children }) {
         fetchFavouriteSpots,
         fetchUserSpots,
         fetchExploreSpots,
-        handleDelete, 
+        handleDelete,
+        handleLike,
         setExploreSpots,
         setUserSpots,
         setFavouriteSpots,
