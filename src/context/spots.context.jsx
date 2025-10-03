@@ -160,8 +160,9 @@ export function SpotsProvider({ children }) {
         console.log(error)
       }
     } else {
+      alert("You cannot delete this spot!")
 
-      console.log("This is not your spot.")
+      //console.log("This is not your spot.")
     }
   }
 

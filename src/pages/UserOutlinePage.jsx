@@ -71,7 +71,7 @@ export default function UserOutlinePage() {
               ) : (
                 <div className="text-center w-full">
                   <p className="text-l font-medium  p-4 text-center">
-                    You have no sceneries yet! You can start with uploading or
+                    You have no sceneries yet! Start with uploading or
                     exploring new sceneries:
                   </p>
                   <Link to="/users/:id/new-scenery">
