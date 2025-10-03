@@ -1,13 +1,28 @@
 import { PlusOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Select, Upload, Checkbox, Alert } from "antd";
 import "@ant-design/v5-patch-for-react-19";
+import { useEffect } from "react";
 
 const { TextArea } = Input;
 const normFile = (e) => {
   if (Array.isArray(e)) {
     return e;
   }
-  return e?.fileList;
+  return (
+    e &&
+    e.fileList.map((file) => {
+      // Cloudinary return the secure_url
+      if (file.response) {
+        return {
+          uid: file.uid,
+          name: file.name,
+          status: "done",
+          url: file.response.secure_url,
+        };
+      }
+      return file;
+    })
+  );
 };
 
 function NewForm({
@@ -23,6 +38,27 @@ function NewForm({
   form,
 }) {
   console.log(title);
+  console.log(imgUrl);
+
+  useEffect(() => {
+    form.setFieldsValue({
+      title,
+      description,
+      imgUrl: imgUrl
+        ? [
+            {
+              uid: "-1",
+              name: "default.png",
+              status: "done",
+              url: imgUrl,
+            },
+          ]
+        : [],
+      location,
+      category,
+      isPrivate,
+    });
+  }, []);
 
   return (
     <>
@@ -59,34 +95,45 @@ function NewForm({
               padding: 30,
             }}
             onFinish={(values) => handleSubmit(values)}
-            initialValues={{
-              imgUrl,
-              title,
-              description,
-              isPrivate,
-              category,
-              location,
-            }}
           >
             <Form.Item
               label="Image"
+              name="imgUrl"
               valuePropName="fileList"
               getValueFromEvent={normFile}
               className="upload"
+              rules={[{ required: true }]}
             >
-              <Upload listType="picture-card">
-                <button
-                  style={{
-                    color: "inherit",
-                    cursor: "inherit",
-                    border: 0,
-                    background: "none",
-                  }}
-                  type="button"
+              <Upload
+                listType="picture-card"
+                action="https://api.cloudinary.com/v1_1/dprwwp1ku/image/upload"
+                data={{ upload_preset: "react_unsigned" }}
+                showUploadList={{ showRemoveIcon: true }}
+                // defaultFileList={
+                //   imgUrl
+                //     ? [
+                //         {
+                //           uid: "-1",
+                //           name: "default.png",
+                //           status: "done",
+                //           url: imgUrl,
+                //         },
+                //       ]
+                //     : []
+                // }
+              >
+                <div
+                // style={{
+                //   color: "inherit",
+                //   cursor: "inherit",
+                //   border: 0,
+                //   background: "none",
+                // }}
+                // type="button"
                 >
                   <PlusOutlined />
                   <div style={{ marginTop: 8 }}>Upload</div>
-                </button>
+                </div>
               </Upload>
             </Form.Item>
 

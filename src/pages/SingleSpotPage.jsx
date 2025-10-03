@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom"
 import { Link } from "react-router-dom"
 
 function SingleSpotPage() {
+  const [spot, setSpot] = useState({});
+  const { user } = useUser();
 
   const [spot, setSpot] = useState({})
   const { id } = useParams()
@@ -57,7 +59,7 @@ function SingleSpotPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default SingleSpotPage
+export default SingleSpotPage;
