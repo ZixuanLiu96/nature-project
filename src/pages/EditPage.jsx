@@ -60,7 +60,7 @@ function EditPage() {
       category: values.category,
       location: values.location,
       isPrivate: values.isPrivate,
-      imgUrl: values.imgUrl[0],
+      imgUrl: values.imgUrl[0].url,
       isLike: false,
     };
     axios

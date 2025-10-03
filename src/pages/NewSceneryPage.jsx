@@ -48,7 +48,7 @@ export default function NewSceneryPage() {
       category: values.category,
       location: values.location,
       isPrivate: values.isPrivate,
-      imgUrl: values.imgUrl[0],
+      imgUrl: values.imgUrl[0].url,
       isLike: false,
     };
 
@@ -66,13 +66,6 @@ export default function NewSceneryPage() {
           failRef.current.style.opacity = 0;
         }, 3000);
       });
-
-    // setImageUrl("/images/waterfall.jpg");
-    // setTitle(values.title);
-    // setDescription(values.description);
-    // setCategory(values.category);
-    // setLocation(values.location);
-    // setIsPrivate(values.isPrivate);
     form.resetFields();
   }
 
