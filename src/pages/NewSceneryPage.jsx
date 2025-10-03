@@ -39,7 +39,7 @@ export default function NewSceneryPage() {
 
   function handleSubmit(values) {
     // console.log("submitting...");
-    // console.log(values);
+    console.log(values);
 
     const newPost = {
       projectId: user.userId,
@@ -48,7 +48,7 @@ export default function NewSceneryPage() {
       category: values.category,
       location: values.location,
       isPrivate: values.isPrivate,
-      imgUrl: "/images/waterfall.jpg",
+      imgUrl: values.imgUrl[0],
       isLike: false,
     };
 
@@ -57,6 +57,7 @@ export default function NewSceneryPage() {
       .then((res) => {
         console.log(res);
         setPost(res.data);
+        localStorage.setItem("spots", JSON.stringify(res.data));
       })
       .catch((error) => {
         console.log(error);

@@ -7,7 +7,16 @@ const normFile = (e) => {
   if (Array.isArray(e)) {
     return e;
   }
-  return e?.fileList;
+  return (
+    e &&
+    e.fileList.map((file) => {
+      if (file.response) {
+        // Cloudinary return the secure_url
+        return file.response.secure_url;
+      }
+      return file.url || file.thumbUrl;
+    })
+  );
 };
 
 function NewForm({
@@ -23,6 +32,16 @@ function NewForm({
   form,
 }) {
   console.log(title);
+  console.log(imgUrl);
+
+  const defaultFileList = [
+    {
+      uid: "-1",
+      name: "test.jpg",
+      status: "done",
+      url: imgUrl,
+    },
+  ];
 
   return (
     <>
@@ -60,7 +79,7 @@ function NewForm({
             }}
             onFinish={(values) => handleSubmit(values)}
             initialValues={{
-              imgUrl,
+              imgUrl: defaultFileList || "",
               title,
               description,
               isPrivate,
@@ -70,11 +89,15 @@ function NewForm({
           >
             <Form.Item
               label="Image"
-              valuePropName="fileList"
+              name="imgUrl"
               getValueFromEvent={normFile}
               className="upload"
             >
-              <Upload listType="picture-card">
+              <Upload
+                listType="picture-card"
+                action="https://api.cloudinary.com/v1_1/dprwwp1ku/image/upload"
+                data={{ upload_preset: "react_unsigned" }}
+              >
                 <button
                   style={{
                     color: "inherit",
