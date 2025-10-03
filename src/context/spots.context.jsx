@@ -24,10 +24,10 @@ export function SpotsProvider({ children }) {
       setLoading(true);
       setError(null);
       const res = await axios.get("http://localhost:5005/spot");
-      console.log(res);
+      console.log(res.data);
       const exploreData = res.data.filter((spot) => spot.isPrivate === false);
       setExploreSpots(exploreData);
-      //localStorage.setItem("spots", JSON.stringify(exploreData));
+      localStorage.setItem("spots", JSON.stringify([...res.data]));
     } catch (error) {
       setError("No spots found!");
     } finally {
