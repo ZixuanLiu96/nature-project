@@ -13,7 +13,7 @@ function AuthModal({ mode, onClose }) {
                 <AuthForm mode={mode} />
 
                 <div className="modal-action">
-                    <button className="btn btn-outline btn-accent mt-4" onClick={onClose}>
+                    <button className="btn mt-4 bg-[#f59f00] text-white border-none shadow-none m-2 hover:bg-amber-400" onClick={onClose}>
                         Close
                     </button>
                 </div>

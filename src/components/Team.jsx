@@ -4,7 +4,7 @@ export default function Team() {
       <h2 className="uppercase text-[#fab005] font-normal text-6xl sm:text-2xl md:text-4xl lg:text-7xl self-end px-40">
         -- our team
       </h2>
-      <div className="flex justify-center items-center gap-70">
+      <div className="flex flex-col justify-center items-center md:flex-row gap-10 md:gap-70">
         <div className="flex flex-col items-center gap-5">
           <div
             className="rounded-full w-50 h-50 mt-100] "

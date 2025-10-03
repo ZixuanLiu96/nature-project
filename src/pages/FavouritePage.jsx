@@ -15,7 +15,7 @@ export default function FavouritePage() {
   useEffect(() => {
     window.scrollTo(0,0);
     fetchFavouriteSpots()
-    console.log (favouriteSpots)
+    console.log ("favourite Spots:",  favouriteSpots)
 
   }, []);
   /*  useEffect(() => {

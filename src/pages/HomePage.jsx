@@ -8,39 +8,62 @@ import { Anchor } from "antd";
 
 export default function HomePage() {
   const [mode, setMode] = useState(null);
+  const [isOpen, setIsOpen] = useState(false)
+
+  const items = [
+    { key: "logo", href: "#logo", title: "Nature's Jewels" },
+    { key: "scenic-wall", href: "#scenic-wall", title: "Scenic Wall" },
+    { key: "about", href: "#about", title: "About" },
+    { key: "login", href: "#log-in", title: "Log In" },
+    { key: "team", href: "#team", title: "Team" },
+  ];
 
   return (
     <div className="bg-base-300">
       <div className="">
-        <nav className="bg-[#15aabf] w-full h-16 fixed top-0 left-0 z-100 flex justify-end items-center px-30">
-          <Anchor
-            direction="horizontal"
-            items={[
-              { key: "logo", href: "#logo", title: "Nature's Jewels" },
-              {
-                key: "scenic-wall",
-                href: "#scenic-wall",
-                title: "Scenic Wall",
-              },
-              {
-                key: "about",
-                href: "#about",
-                title: "About",
-              },
-              {
-                key: "login",
-                href: "#log-in",
-                title: "Log In",
-              },
-              {
-                key: "team",
-                href: "#team",
-                title: "Team",
-              },
-            ]}
-            className="anchor"
-          />
+        <nav className="bg-[#15aabf] w-full h-16 fixed top-0 left-0 z-100 px-4 pt-3">
+
+          <div className="navbar-start md:hidden">
+            <button onClick={() => setIsOpen(!isOpen)}
+              className="btn btn-ghost">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                {isOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
+            {/* Dropdown Menu */}
+        {isOpen && (
+          <div className="absolute top-16 left-0 w-full bg-[#15aabf] p-4 shadow-md">
+            <Anchor direction="vertical" items={items} className="anchor text-white" />
+          </div>
+        )}
+      </div>
+            {/* Desktop Menu */}
+      <div className="hidden md:flex flex-1 justify-end">
+        <Anchor direction="horizontal" items={items} className="anchor text-white" />
+      </div>
+
         </nav>
+
         <div
           id="logo"
           className="header h-screen bg-[url(/images/water.jpg)] bg-center bg-no-repeat bg-cover relative flex flex-col"
