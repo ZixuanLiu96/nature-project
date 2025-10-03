@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useSpots } from "../context/spots.context"
 import { useParams } from "react-router-dom"
 import { Link } from "react-router-dom"
+import { useUser } from "../context/user.context"
 
 function SingleSpotPage() {
   const [spot, setSpot] = useState({});
@@ -50,7 +51,7 @@ function SingleSpotPage() {
             </svg>
 
           <div className="flex flex-row gap-4">
-            <Link to="*">
+            <Link to={`/users/${user.userId}/edit/${id}`}>
            <button className="btn btn-primary bg-[#f59f00] border-none shadow-none m-2  hover:bg-amber-400">Edit</button></Link>
            
            {/*  <button onClick={() => handleLike(spot.id)} className="btn btn-primary bg-[#f59f00] border-none shadow-none text-lg m-2">Like</button> */}
