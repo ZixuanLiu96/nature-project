@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 
 function SingleSpotPage() {
 
-  const [spot, setSpot] = useState({})
+  //const [spot, setSpot] = useState({})
   const { id } = useParams()
 
   const { handleDelete, handleLike, favouriteSpots } = useSpots()
